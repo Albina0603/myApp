@@ -1,61 +1,14 @@
-import { Text } from "@react-navigation/elements";
-export default function ProfileCard() {
-  return <Text>Profile</Text>;
-}
+import { Button } from "@react-navigation/elements";
+import { useState } from "react";
+import { Text, View } from "react-native";
 
-
-
-
-//import { HelloWave } from "@/components/hello-wave";
-import ParallaxScrollView from "@/components/parallax-scroll-view";
-import { ThemedText } from "@/components/themed-text";
-import { ThemedView } from "@/components/themed-view";
-import { Image } from "expo-image";
-import { Button, StyleSheet } from "react-native";
-
-export default function HomeScreen() {
-  const userName = "Albina and Lera";
-
-  const handleStart = () => {
-    console.log("Начать нажато");
-    // тут позже добавим навигацию
-  };
-
+export default function ProfileCard({ name, role, course }) {
+  const [count, setCount] = useState(role);
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={
-        <Image
-          source={require("../../assets/images/albina-lera.jpeg")}
-          style={styles.headerImage}
-        />
-      }
-    >
-      <ThemedView style={styles.container}>
-        {/* Заголовок */}
-        <ThemedText type="title" style={styles.title}>
-          Welcome, {userName} 👋
-        </ThemedText>
-
-        <HelloWave />
-
-        {/* Фото */}
-        <Image
-          source={require("../../assets/images/albina-lera.jpeg")}
-          style={styles.photo}
-        />
-
-        {/* Текст */}
-        <ThemedText style={styles.description}>
-          This app is created especially for you.{"\n"}
-          Here you can start your journey, explore features{"\n"}
-          and enjoy the experience together 💖
-        </ThemedText>
-
-        {/* Кнопка */}
-        <Button title="Начать" onPress={handleStart} />
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>{count}</Text>
+      <Button title={name} onPress={() => setCount(count + course)} />
+    </View>
   );
 }
 
@@ -86,4 +39,3 @@ const styles = StyleSheet.create({
     borderRadius: 24,
   },
 });
-
